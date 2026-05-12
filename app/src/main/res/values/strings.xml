@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">我想记</string>
+    <string name="action_add">新增</string>
+    <string name="action_save">保存</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_delete">删除</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_backup">导出备份</string>
+    <string name="action_restore">恢复备份</string>
+    <string name="action_export_csv">导出 CSV</string>
+    <string name="action_clear">清零</string>
+    <string name="action_ok">OK</string>
+    <string name="action_switch">切换</string>
+
+    <string name="nav_home">首页</string>
+    <string name="nav_records">账单</string>
+    <string name="nav_stats">统计</string>
+    <string name="nav_settings">设置</string>
+
+    <string name="label_income">收入</string>
+    <string name="label_expense">支出</string>
+    <string name="label_balance">结余</string>
+    <string name="label_total_balance">总结余</string>
+    <string name="label_accounts">账户管理</string>
+    <string name="label_categories">分类管理</string>
+    <string name="label_books">账本管理</string>
+    <string name="label_backup_restore">备份与恢复</string>
+    <string name="label_default_account">现金</string>
+    <string name="label_date">日期</string>
+    <string name="label_amount">金额</string>
+    <string name="label_note">备注</string>
+    <string name="label_book">账本</string>
+    <string name="label_category">类别</string>
+    <string name="label_account">账户</string>
+    <string name="label_transfer_account">转入账户</string>
+    <string name="label_type">类型</string>
+    <string name="label_category_page">第 %1$d / %2$d 页</string>
+    <string name="label_today">今天</string>
+    <string name="label_current_book">当前账本</string>
+    <string name="label_current_balance">当前结余</string>
+    <string name="label_chart_summary">图表统计</string>
+
+    <string name="hint_search_notes">搜索备注或分类</string>
+    <string name="hint_optional_note">输入备注</string>
+    <string name="hint_amount_expression">输入金额或表达式，例如 18+2.5</string>
+
+    <string name="empty_records">还没有账单，先记一笔吧</string>
+    <string name="empty_books">暂无账本</string>
+    <string name="empty_accounts">暂无账户</string>
+    <string name="empty_categories">暂无分类</string>
+    <string name="empty_stats">当前没有统计数据</string>
+
+    <string name="message_restore_confirm">恢复会覆盖当前本地数据，是否继续？</string>
+    <string name="message_delete_confirm">删除后不可恢复，是否继续？</string>
+    <string name="message_archive_book">归档后账本不会在主列表展示。</string>
+    <string name="message_no_more_categories">当前类型没有可用分类</string>
+
+    <string name="title_add_transaction">记一笔</string>
+    <string name="title_edit_transaction">编辑账目</string>
+    <string name="title_book_manager">账本管理</string>
+    <string name="title_account_manager">账户管理</string>
+    <string name="title_category_manager">分类管理</string>
+    <string name="title_backup_restore">备份与恢复</string>
+    <string name="title_about">关于</string>
+    <string name="title_month_records">月度账单</string>
+    <string name="title_statistics">图表统计</string>
+    <string name="title_recent_transactions">最近账单</string>
+    <string name="title_month_summary">本月概览</string>
+    <string name="title_filter">筛选</string>
+    <string name="title_current_book">当前账本</string>
+    <string name="title_transaction_timeline">账单时间线</string>
+    <string name="title_expense_breakdown">支出分类占比</string>
+    <string name="title_income_breakdown">收入分类占比</string>
+    <string name="title_daily_trend">收支趋势</string>
+
+    <string name="about_content">我想记是一款无广告、离线优先的个人记账应用。</string>
+
+    <string name="transaction_type_expense">支出</string>
+    <string name="transaction_type_income">收入</string>
+    <string name="transaction_type_transfer">转账</string>
+    <string name="transaction_type_adjustment">调整</string>
+
+    <string name="category_none">未分类</string>
+    <string name="filter_current_month">当前月</string>
+    <string name="filter_selected_category">已选分类</string>
+    <string name="filter_selected_account">已选账户</string>
+    <string name="filter_amount_range">金额区间</string>
+
+    <string name="dialog_transaction_actions">账目操作</string>
+    <string name="dialog_filter_records">筛选账单</string>
+    <string name="dialog_all">全部</string>
+    <string name="dialog_all_categories">全部分类</string>
+    <string name="dialog_all_accounts">全部账户</string>
+    <string name="dialog_min_amount">最小金额</string>
+    <string name="dialog_max_amount">最大金额</string>
+    <string name="dialog_apply">应用</string>
+    <string name="dialog_clear">清空</string>
+    <string name="dialog_switch_book">切换账本</string>
+
+    <string name="editor_increase_balance">增加余额</string>
+    <string name="editor_decrease_balance">减少余额</string>
+    <string name="editor_out_account">转出账户</string>
+    <string name="editor_direction">调整方向</string>
+    <string name="editor_preview_prefix">计算结果：%1$s</string>
+    <string name="editor_preview_invalid">表达式有误</string>
+    <string name="editor_preview_empty">计算结果：-</string>
+    <string name="editor_page_prev">上一页</string>
+    <string name="editor_page_next">下一页</string>
+    <string name="editor_no_category">当前类型没有分类可选</string>
+    <string name="editor_keyboard_delete">退格</string>
+    <string name="editor_selected_category">已选：%1$s</string>
+    <string name="editor_summary_default">请选择类别并输入金额</string>
+
+    <string name="home_book_balance">当前结余</string>
+    <string name="home_month_income">当月收入</string>
+    <string name="home_month_expense">当月支出</string>
+    <string name="timeline_income">收入</string>
+    <string name="timeline_expense">支出</string>
+    <string name="timeline_day_expense">支出 %1$s</string>
+    <string name="timeline_transfer">转账</string>
+    <string name="timeline_adjustment">余额调整</string>
+    <string name="timeline_no_note">无备注</string>
+
+    <string name="stats_amount_percent">%1$s · %2$d%%</string>
+    <string name="stats_ring_empty">暂无支出分布</string>
+    <string name="settings_current_book">当前账本：%1$s</string>
+</resources>

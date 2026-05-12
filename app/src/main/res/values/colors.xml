@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_primary">#1B6B5C</color>
+    <color name="brand_primary_dark">#124D42</color>
+    <color name="brand_secondary">#F2C14E</color>
+    <color name="surface_background">#F7F6F2</color>
+    <color name="surface_card">#FFFFFFFF</color>
+    <color name="text_primary">#1F2933</color>
+    <color name="text_secondary">#52606D</color>
+    <color name="income">#2B9348</color>
+    <color name="expense">#C44536</color>
+    <color name="divider">#D9E2EC</color>
+    <color name="text_muted">#7B8794</color>
+    <color name="surface_soft">#F2F4F7</color>
+    <color name="ring_track">#E6EAF0</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
