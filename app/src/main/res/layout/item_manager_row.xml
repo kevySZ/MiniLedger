@@ -16,7 +16,7 @@
             android:id="@+id/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_primary"
+            android:textColor="?attr/ledgerTextPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -25,14 +25,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="@color/text_secondary" />
+            android:textColor="?attr/ledgerTextSecondary" />
 
         <TextView
             android:id="@+id/textMeta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:textColor="@color/brand_primary"
+            android:textColor="?attr/ledgerBrandPrimary"
             android:textSize="12sp" />
     </LinearLayout>
 

@@ -124,4 +124,16 @@
     <string name="stats_amount_percent">%1$s · %2$d%%</string>
     <string name="stats_ring_empty">暂无支出分布</string>
     <string name="settings_current_book">当前账本：%1$s</string>
+    <string name="settings_theme_title">换肤</string>
+    <string name="settings_manage_title">常用设置</string>
+    <string name="settings_theme_current">当前风格：%1$s</string>
+    <string name="settings_theme_warm">温馨风</string>
+    <string name="settings_theme_barbie">芭比风</string>
+    <string name="settings_theme_warm_desc">浅绿、浅黄与奶油白组合，整体更柔和温暖。</string>
+    <string name="settings_theme_barbie_desc">以淡紫为主调，搭配浅粉、橘粉与淡金色。</string>
+    <string name="about_update_notes_title">版本更新说明</string>
+    <string name="about_update_notes_content">1. 新增多账本、账单时间线与月度统计。\n2. 编辑账目支持分类宫格、自定义键盘与表达式输入。\n3. 完成温馨风与芭比风两套浅色主题基础，便于后续扩展更多皮肤。</string>
+    <string name="about_check_update">检测更新</string>
+    <string name="about_update_mock_hint">检测更新功能后续开放</string>
+    <string name="about_version_value">版本 %1$s（%2$d）</string>
 </resources>

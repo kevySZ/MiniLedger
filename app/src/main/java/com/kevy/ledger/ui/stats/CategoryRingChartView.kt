@@ -2,12 +2,12 @@ package com.kevy.ledger.ui.stats
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import com.kevy.ledger.R
+import com.kevy.ledger.ui.common.AppThemeManager
 
 class CategoryRingChartView @JvmOverloads constructor(
     context: Context,
@@ -16,7 +16,7 @@ class CategoryRingChartView @JvmOverloads constructor(
     data class Segment(val ratio: Float, val color: Int)
 
     private val trackPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = context.getColor(R.color.ring_track)
+        color = AppThemeManager.resolveColor(context, R.attr.ledgerRingTrack)
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
     }
@@ -25,7 +25,7 @@ class CategoryRingChartView @JvmOverloads constructor(
         strokeCap = Paint.Cap.ROUND
     }
     private val centerTextPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = context.getColor(R.color.text_secondary)
+        color = AppThemeManager.resolveColor(context, R.attr.ledgerTextSecondary)
         textAlign = Paint.Align.CENTER
         textSize = 34f
     }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="ledgerBrandPrimary" format="color" />
+    <attr name="ledgerBrandPrimaryDark" format="color" />
+    <attr name="ledgerBrandSecondary" format="color" />
+    <attr name="ledgerBrandTertiary" format="color" />
+    <attr name="ledgerSurfaceBackground" format="color" />
+    <attr name="ledgerSurfaceCard" format="color" />
+    <attr name="ledgerSurfaceSoft" format="color" />
+    <attr name="ledgerSurfaceSoftAlt" format="color" />
+    <attr name="ledgerSurfaceAccent" format="color" />
+    <attr name="ledgerSurfacePanel" format="color" />
+    <attr name="ledgerSurfaceKeyboard" format="color" />
+    <attr name="ledgerTextPrimary" format="color" />
+    <attr name="ledgerTextSecondary" format="color" />
+    <attr name="ledgerTextMuted" format="color" />
+    <attr name="ledgerTextInverse" format="color" />
+    <attr name="ledgerTextInverseSoft" format="color" />
+    <attr name="ledgerDivider" format="color" />
+    <attr name="ledgerRingTrack" format="color" />
+    <attr name="ledgerOutlineSoft" format="color" />
+    <attr name="ledgerIncome" format="color" />
+    <attr name="ledgerExpense" format="color" />
+    <attr name="ledgerWarning" format="color" />
+    <attr name="ledgerDanger" format="color" />
+    <attr name="ledgerIconOnColor" format="color" />
+    <attr name="ledgerToolbarIcon" format="color" />
+    <attr name="ledgerKeyFill" format="color" />
+    <attr name="ledgerKeyFillPressed" format="color" />
+    <attr name="ledgerKeyStroke" format="color" />
+    <attr name="ledgerKeyStrokePressed" format="color" />
+</resources>

@@ -1,13 +1,78 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.Ledger" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/brand_primary</item>
-        <item name="colorPrimaryVariant">@color/brand_primary_dark</item>
-        <item name="colorOnPrimary">@color/text_inverse</item>
-        <item name="colorSecondary">@color/brand_secondary</item>
-        <item name="colorSecondaryVariant">@color/brand_secondary</item>
-        <item name="colorOnSecondary">@color/text_primary</item>
+    <style name="Theme.Ledger" parent="Theme.Ledger.Warm" />
+    <style name="Theme.Ledger.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">?attr/ledgerBrandPrimary</item>
+        <item name="colorPrimaryVariant">?attr/ledgerBrandPrimaryDark</item>
+        <item name="colorOnPrimary">?attr/ledgerTextInverse</item>
+        <item name="colorSecondary">?attr/ledgerBrandSecondary</item>
+        <item name="colorSecondaryVariant">?attr/ledgerBrandSecondary</item>
+        <item name="colorOnSecondary">?attr/ledgerTextPrimary</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/surface_background</item>
-        <item name="android:navigationBarColor">@color/surface_card</item>
+        <item name="android:windowBackground">?attr/ledgerSurfaceBackground</item>
+        <item name="android:navigationBarColor">?attr/ledgerSurfaceCard</item>
+        <item name="android:textColorPrimary">?attr/ledgerTextPrimary</item>
+        <item name="android:textColorSecondary">?attr/ledgerTextSecondary</item>
+    </style>
+    <style name="Theme.Ledger.Warm" parent="Theme.Ledger.Base">
+        <item name="ledgerBrandPrimary">@color/warm_brand_primary</item>
+        <item name="ledgerBrandPrimaryDark">@color/warm_brand_primary_dark</item>
+        <item name="ledgerBrandSecondary">@color/warm_brand_secondary</item>
+        <item name="ledgerBrandTertiary">@color/warm_brand_tertiary</item>
+        <item name="ledgerSurfaceBackground">@color/warm_surface_background</item>
+        <item name="ledgerSurfaceCard">@color/warm_surface_card</item>
+        <item name="ledgerSurfaceSoft">@color/warm_surface_soft</item>
+        <item name="ledgerSurfaceSoftAlt">@color/warm_surface_soft_alt</item>
+        <item name="ledgerSurfaceAccent">@color/warm_surface_accent</item>
+        <item name="ledgerSurfacePanel">@color/warm_surface_panel</item>
+        <item name="ledgerSurfaceKeyboard">@color/warm_surface_keyboard</item>
+        <item name="ledgerTextPrimary">@color/warm_text_primary</item>
+        <item name="ledgerTextSecondary">@color/warm_text_secondary</item>
+        <item name="ledgerTextMuted">@color/warm_text_muted</item>
+        <item name="ledgerTextInverse">@color/warm_text_inverse</item>
+        <item name="ledgerTextInverseSoft">@color/warm_text_inverse_soft</item>
+        <item name="ledgerDivider">@color/warm_divider</item>
+        <item name="ledgerRingTrack">@color/warm_ring_track</item>
+        <item name="ledgerOutlineSoft">@color/warm_outline_soft</item>
+        <item name="ledgerIncome">@color/warm_income</item>
+        <item name="ledgerExpense">@color/warm_expense</item>
+        <item name="ledgerWarning">@color/warm_warning</item>
+        <item name="ledgerDanger">@color/warm_danger</item>
+        <item name="ledgerIconOnColor">@color/white</item>
+        <item name="ledgerToolbarIcon">@color/warm_toolbar_icon</item>
+        <item name="ledgerKeyFill">@color/warm_key_fill</item>
+        <item name="ledgerKeyFillPressed">@color/warm_key_fill_pressed</item>
+        <item name="ledgerKeyStroke">@color/warm_key_stroke</item>
+        <item name="ledgerKeyStrokePressed">@color/warm_key_stroke_pressed</item>
+    </style>
+    <style name="Theme.Ledger.Barbie" parent="Theme.Ledger.Base">
+        <item name="ledgerBrandPrimary">@color/barbie_brand_primary</item>
+        <item name="ledgerBrandPrimaryDark">@color/barbie_brand_primary_dark</item>
+        <item name="ledgerBrandSecondary">@color/barbie_brand_secondary</item>
+        <item name="ledgerBrandTertiary">@color/barbie_brand_tertiary</item>
+        <item name="ledgerSurfaceBackground">@color/barbie_surface_background</item>
+        <item name="ledgerSurfaceCard">@color/barbie_surface_card</item>
+        <item name="ledgerSurfaceSoft">@color/barbie_surface_soft</item>
+        <item name="ledgerSurfaceSoftAlt">@color/barbie_surface_soft_alt</item>
+        <item name="ledgerSurfaceAccent">@color/barbie_surface_accent</item>
+        <item name="ledgerSurfacePanel">@color/barbie_surface_panel</item>
+        <item name="ledgerSurfaceKeyboard">@color/barbie_surface_keyboard</item>
+        <item name="ledgerTextPrimary">@color/barbie_text_primary</item>
+        <item name="ledgerTextSecondary">@color/barbie_text_secondary</item>
+        <item name="ledgerTextMuted">@color/barbie_text_muted</item>
+        <item name="ledgerTextInverse">@color/barbie_text_inverse</item>
+        <item name="ledgerTextInverseSoft">@color/barbie_text_inverse_soft</item>
+        <item name="ledgerDivider">@color/barbie_divider</item>
+        <item name="ledgerRingTrack">@color/barbie_ring_track</item>
+        <item name="ledgerOutlineSoft">@color/barbie_outline_soft</item>
+        <item name="ledgerIncome">@color/barbie_income</item>
+        <item name="ledgerExpense">@color/barbie_expense</item>
+        <item name="ledgerWarning">@color/barbie_warning</item>
+        <item name="ledgerDanger">@color/barbie_danger</item>
+        <item name="ledgerIconOnColor">@color/white</item>
+        <item name="ledgerToolbarIcon">@color/barbie_toolbar_icon</item>
+        <item name="ledgerKeyFill">@color/barbie_key_fill</item>
+        <item name="ledgerKeyFillPressed">@color/barbie_key_fill_pressed</item>
+        <item name="ledgerKeyStroke">@color/barbie_key_stroke</item>
+        <item name="ledgerKeyStrokePressed">@color/barbie_key_stroke_pressed</item>
     </style>
 </resources>

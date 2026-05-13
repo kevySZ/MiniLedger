@@ -44,12 +44,12 @@ object CategoryVisuals {
         return when (type) {
             TransactionType.TRANSFER -> CategoryVisual(
                 iconRes = R.drawable.ic_category_transfer,
-                colorHex = CategoryPalette.transferColorHex
+                colorHex = CategoryPalette.transferColorHex()
             )
 
             TransactionType.BALANCE_ADJUSTMENT -> CategoryVisual(
                 iconRes = R.drawable.ic_category_adjustment,
-                colorHex = CategoryPalette.adjustmentColorHex
+                colorHex = CategoryPalette.adjustmentColorHex()
             )
 
             TransactionType.INCOME -> forCategory(categoryName, CategoryType.INCOME, null)

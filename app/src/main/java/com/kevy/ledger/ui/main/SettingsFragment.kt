@@ -1,6 +1,5 @@
 package com.kevy.ledger.ui.main
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -12,6 +11,8 @@ import com.kevy.ledger.ui.account.AccountManagerActivity
 import com.kevy.ledger.ui.backup.BackupRestoreActivity
 import com.kevy.ledger.ui.book.BookManagerActivity
 import com.kevy.ledger.ui.category.CategoryManagerActivity
+import com.kevy.ledger.ui.common.AppThemeManager
+import com.kevy.ledger.ui.common.AppThemeMode
 import com.kevy.ledger.ui.common.Refreshable
 
 class SettingsFragment : Fragment(R.layout.fragment_settings), Refreshable {
@@ -35,11 +36,13 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), Refreshable {
             startActivity(Intent(requireContext(), BackupRestoreActivity::class.java))
         }
         binding?.buttonAbout?.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle(R.string.title_about)
-                .setMessage(R.string.about_content)
-                .setPositiveButton(android.R.string.ok, null)
-                .show()
+            startActivity(Intent(requireContext(), AboutActivity::class.java))
+        }
+        binding?.cardThemeWarm?.setOnClickListener {
+            applyThemeMode(AppThemeMode.WARM)
+        }
+        binding?.cardThemeBarbie?.setOnClickListener {
+            applyThemeMode(AppThemeMode.BARBIE)
         }
 
         refreshContent()
@@ -53,5 +56,29 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), Refreshable {
     override fun refreshContent() {
         val bookName = repository.getCurrentBook()?.name ?: getString(R.string.empty_books)
         binding?.textCurrentBook?.text = getString(R.string.settings_current_book, bookName)
+        refreshThemeSection()
+    }
+
+    private fun applyThemeMode(mode: AppThemeMode) {
+        if (AppThemeManager.currentMode(requireContext()) == mode) return
+        AppThemeManager.setMode(requireContext(), mode)
+        requireActivity().recreate()
+    }
+
+    private fun refreshThemeSection() {
+        val currentMode = AppThemeManager.currentMode(requireContext())
+        val currentThemeName = if (currentMode == AppThemeMode.WARM) {
+            getString(R.string.settings_theme_warm)
+        } else {
+            getString(R.string.settings_theme_barbie)
+        }
+
+        binding?.textThemeCurrent?.text = getString(R.string.settings_theme_current, currentThemeName)
+        binding?.cardThemeWarm?.isChecked = currentMode == AppThemeMode.WARM
+        binding?.cardThemeBarbie?.isChecked = currentMode == AppThemeMode.BARBIE
+        binding?.cardThemeWarm?.strokeWidth =
+            resources.getDimensionPixelSize(if (currentMode == AppThemeMode.WARM) R.dimen.theme_card_selected_stroke else R.dimen.theme_card_normal_stroke)
+        binding?.cardThemeBarbie?.strokeWidth =
+            resources.getDimensionPixelSize(if (currentMode == AppThemeMode.BARBIE) R.dimen.theme_card_selected_stroke else R.dimen.theme_card_normal_stroke)
     }
 }

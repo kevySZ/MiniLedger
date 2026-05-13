@@ -5,9 +5,8 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.content.ContextCompat
-import com.kevy.ledger.R
 import com.kevy.ledger.domain.model.DailyStat
+import com.kevy.ledger.ui.common.AppThemeManager
 import kotlin.math.max
 
 class DailyTrendChartView @JvmOverloads constructor(
@@ -15,17 +14,17 @@ class DailyTrendChartView @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : View(context, attrs) {
     private val expensePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = ContextCompat.getColor(context, R.color.expense)
+        color = AppThemeManager.resolveColor(context, com.kevy.ledger.R.attr.ledgerExpense)
     }
     private val incomePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = ContextCompat.getColor(context, R.color.income)
+        color = AppThemeManager.resolveColor(context, com.kevy.ledger.R.attr.ledgerIncome)
     }
     private val axisPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = ContextCompat.getColor(context, R.color.divider)
+        color = AppThemeManager.resolveColor(context, com.kevy.ledger.R.attr.ledgerDivider)
         strokeWidth = 2f
     }
     private val labelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = ContextCompat.getColor(context, R.color.text_secondary)
+        color = AppThemeManager.resolveColor(context, com.kevy.ledger.R.attr.ledgerTextSecondary)
         textSize = 24f
     }
     private var stats: List<DailyStat> = emptyList()

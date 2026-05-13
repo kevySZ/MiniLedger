@@ -14,6 +14,7 @@ import com.kevy.ledger.databinding.FragmentStatsBinding
 import com.kevy.ledger.databinding.ItemStatBarBinding
 import com.kevy.ledger.domain.model.CategoryStat
 import com.kevy.ledger.domain.model.CategoryType
+import com.kevy.ledger.ui.common.AppThemeManager
 import com.kevy.ledger.ui.common.CategoryPalette
 import com.kevy.ledger.ui.common.Refreshable
 import com.kevy.ledger.ui.stats.CategoryRingChartView
@@ -89,7 +90,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats), Refreshable {
             container.addView(
                 TextView(requireContext()).apply {
                     text = getString(R.string.empty_stats)
-                    setTextColor(requireContext().getColor(R.color.text_secondary))
+                    setTextColor(AppThemeManager.resolveColor(requireContext(), R.attr.ledgerTextSecondary))
                 }
             )
             return
@@ -110,7 +111,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats), Refreshable {
             row.progressBar.progress = percent
             row.progressBar.progressTintList = ColorStateList.valueOf(color)
             row.progressBar.progressBackgroundTintList =
-                ColorStateList.valueOf(requireContext().getColor(R.color.ring_track))
+                ColorStateList.valueOf(AppThemeManager.resolveColor(requireContext(), R.attr.ledgerRingTrack))
 
             container.addView(row.root)
         }

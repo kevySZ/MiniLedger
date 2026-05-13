@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/ledgerSurfaceBackground"
     android:fillViewport="true">
 
     <LinearLayout
@@ -25,7 +26,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@android:drawable/ic_media_previous" />
+                android:src="@android:drawable/ic_media_previous"
+                android:tint="?attr/ledgerTextSecondary" />
 
             <TextView
                 android:id="@+id/textMonth"
@@ -33,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/text_primary"
+                android:textColor="?attr/ledgerTextPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -42,7 +44,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@android:drawable/ic_media_next" />
+                android:src="@android:drawable/ic_media_next"
+                android:tint="?attr/ledgerTextSecondary" />
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
@@ -65,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/label_chart_summary"
-                    android:textColor="@color/text_primary"
+                    android:textColor="?attr/ledgerTextPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -86,7 +89,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_income"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="?attr/ledgerTextSecondary"
                             android:textSize="13sp" />
 
                         <TextView
@@ -94,7 +97,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:textColor="@color/text_primary"
+                            android:textColor="?attr/ledgerTextPrimary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -110,7 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_expense"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="?attr/ledgerTextSecondary"
                             android:textSize="13sp" />
 
                         <TextView
@@ -118,7 +121,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:textColor="@color/text_primary"
+                            android:textColor="?attr/ledgerTextPrimary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -134,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_balance"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="?attr/ledgerTextSecondary"
                             android:textSize="13sp" />
 
                         <TextView
@@ -142,7 +145,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:textColor="@color/text_primary"
+                            android:textColor="?attr/ledgerTextPrimary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -163,7 +166,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/empty_stats"
-            android:textColor="@color/text_secondary"
+            android:textColor="?attr/ledgerTextSecondary"
             android:visibility="gone" />
 
         <com.google.android.material.card.MaterialCardView
@@ -183,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/title_expense_breakdown"
-                    android:textColor="@color/text_primary"
+                    android:textColor="?attr/ledgerTextPrimary"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -220,7 +223,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/title_income_breakdown"
-                    android:textColor="@color/text_primary"
+                    android:textColor="?attr/ledgerTextPrimary"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 

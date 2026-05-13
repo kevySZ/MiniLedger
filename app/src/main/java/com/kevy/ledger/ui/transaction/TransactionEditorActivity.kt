@@ -14,8 +14,8 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.kevy.ledger.R
@@ -27,6 +27,7 @@ import com.kevy.ledger.domain.model.CategoryType
 import com.kevy.ledger.domain.model.EntryDirection
 import com.kevy.ledger.domain.model.TransactionInput
 import com.kevy.ledger.domain.model.TransactionType
+import com.kevy.ledger.ui.common.ThemedActivity
 import com.kevy.ledger.ui.common.CategoryGridAdapter
 import com.kevy.ledger.ui.common.CategoryVisuals
 import com.kevy.ledger.util.AmountExpressionEvaluator
@@ -34,7 +35,7 @@ import com.kevy.ledger.util.DateUtils
 import com.kevy.ledger.util.MoneyUtils
 import java.time.LocalDate
 
-class TransactionEditorActivity : AppCompatActivity() {
+class TransactionEditorActivity : ThemedActivity() {
     private lateinit var binding: ActivityTransactionEditorBinding
     private val repository get() = AppGraph.repository
 

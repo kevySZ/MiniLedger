@@ -7,7 +7,6 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kevy.ledger.R
@@ -16,8 +15,9 @@ import com.kevy.ledger.databinding.ActivityManagerListBinding
 import com.kevy.ledger.domain.model.Book
 import com.kevy.ledger.ui.common.ManagerRow
 import com.kevy.ledger.ui.common.ManagerRowAdapter
+import com.kevy.ledger.ui.common.ThemedActivity
 
-class BookManagerActivity : AppCompatActivity() {
+class BookManagerActivity : ThemedActivity() {
     private lateinit var binding: ActivityManagerListBinding
     private val repository get() = AppGraph.repository
     private val adapter by lazy { ManagerRowAdapter { showBookActions(it.id) } }

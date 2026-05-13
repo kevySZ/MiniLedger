@@ -3,7 +3,6 @@ package com.kevy.ledger.ui.common
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.kevy.ledger.R
 import com.kevy.ledger.databinding.ItemCategoryOptionBinding
@@ -42,7 +41,7 @@ class CategoryGridAdapter(
             binding.root.alpha = if (selected) 1f else 0.9f
             binding.cardIcon.strokeWidth = if (selected) 3 else 0
             binding.cardIcon.strokeColor = if (selected) {
-                ContextCompat.getColor(binding.root.context, R.color.brand_secondary)
+                AppThemeManager.resolveColor(binding.root.context, R.attr.ledgerBrandSecondary)
             } else {
                 Color.TRANSPARENT
             }

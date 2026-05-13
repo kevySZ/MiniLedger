@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface_background"
+    android:background="?attr/ledgerSurfaceBackground"
     android:orientation="vertical"
     android:paddingStart="16dp"
     android:paddingTop="12dp"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/text_primary"
+            android:textColor="?attr/ledgerTextPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/text_secondary" />
+            android:textColor="?attr/ledgerTextSecondary" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonFilter"
@@ -81,7 +81,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/empty_records"
-        android:textColor="@color/text_secondary"
+        android:textColor="?attr/ledgerTextSecondary"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView

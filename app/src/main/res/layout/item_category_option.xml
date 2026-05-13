@@ -34,7 +34,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:textColor="@color/text_primary"
+        android:textColor="?attr/ledgerTextPrimary"
         android:textSize="11sp" />
 
 </LinearLayout>

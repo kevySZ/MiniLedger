@@ -9,7 +9,6 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kevy.ledger.R
@@ -19,8 +18,9 @@ import com.kevy.ledger.domain.model.Category
 import com.kevy.ledger.domain.model.CategoryType
 import com.kevy.ledger.ui.common.ManagerRow
 import com.kevy.ledger.ui.common.ManagerRowAdapter
+import com.kevy.ledger.ui.common.ThemedActivity
 
-class CategoryManagerActivity : AppCompatActivity() {
+class CategoryManagerActivity : ThemedActivity() {
     private lateinit var binding: ActivityManagerListBinding
     private val repository get() = AppGraph.repository
     private val adapter by lazy { ManagerRowAdapter { showEditDialog(it.id) } }

@@ -5,13 +5,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import com.kevy.ledger.R
 import com.kevy.ledger.app.AppGraph
 import com.kevy.ledger.databinding.ActivityBackupRestoreBinding
+import com.kevy.ledger.ui.common.ThemedActivity
 import java.nio.charset.Charset
 
-class BackupRestoreActivity : AppCompatActivity() {
+class BackupRestoreActivity : ThemedActivity() {
     private lateinit var binding: ActivityBackupRestoreBinding
     private val repository get() = AppGraph.repository
     private var pendingExportContent: String = ""

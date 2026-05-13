@@ -1,12 +1,12 @@
 package com.kevy.ledger.ui.main
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.kevy.ledger.R
 import com.kevy.ledger.databinding.ActivityMainBinding
 import com.kevy.ledger.ui.common.Refreshable
+import com.kevy.ledger.ui.common.ThemedActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ThemedActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
