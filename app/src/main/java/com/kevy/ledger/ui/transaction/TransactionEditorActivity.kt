@@ -7,11 +7,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.tabs.TabLayout
@@ -70,9 +73,9 @@ class TransactionEditorActivity : AppCompatActivity() {
         setupSpinners()
         setupDatePicker()
         setupNoteEditor()
+        setupAmountField()
         setupKeypad()
         setupAmountPreview()
-        binding.buttonDelete.setOnClickListener { deleteTransaction() }
 
         if (transactionId != null) {
             loadExistingTransaction()
@@ -80,6 +83,24 @@ class TransactionEditorActivity : AppCompatActivity() {
             supportActionBar?.title = getString(R.string.title_add_transaction)
             loadBaseData()
             applyType(currentType())
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (transactionId != null) {
+            menuInflater.inflate(R.menu.menu_transaction_editor, menu)
+        }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.actionDelete -> {
+                deleteTransaction()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -99,10 +120,10 @@ class TransactionEditorActivity : AppCompatActivity() {
         setSpinnerSelection(binding.spinnerTransferAccount, transaction.transferAccountId)
         binding.spinnerDirection.setSelection(if (transaction.direction == EntryDirection.IN) 0 else 1)
         binding.editAmount.setText(MoneyUtils.centsToPlain(transaction.amountCents))
-        binding.buttonDelete.visibility = View.VISIBLE
         applyType(transaction.type)
         updateDateDisplay()
         updateNoteDisplay()
+        invalidateOptionsMenu()
     }
 
     private fun loadBaseData() {
@@ -196,26 +217,40 @@ class TransactionEditorActivity : AppCompatActivity() {
         binding.buttonNote.setOnClickListener {
             val input = EditText(this).apply {
                 setText(currentNote)
-                hint = "输入备注"
+                hint = getString(R.string.hint_optional_note)
                 inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
                 setSelection(text?.length ?: 0)
                 minLines = 3
             }
 
             AlertDialog.Builder(this)
-                .setTitle("备注")
+                .setTitle(getString(R.string.label_note))
                 .setView(input)
-                .setPositiveButton("保存") { _, _ ->
+                .setPositiveButton(R.string.action_save) { _, _ ->
                     currentNote = input.text?.toString()?.trim().orEmpty()
                     updateNoteDisplay()
                 }
                 .setNegativeButton(android.R.string.cancel, null)
-                .setNeutralButton("清空") { _, _ ->
+                .setNeutralButton(R.string.action_clear) { _, _ ->
                     currentNote = ""
                     updateNoteDisplay()
                 }
                 .show()
         }
+    }
+
+    private fun setupAmountField() {
+        binding.editAmount.apply {
+            showSoftInputOnFocus = false
+            isFocusable = false
+            isFocusableInTouchMode = false
+            isCursorVisible = false
+            isLongClickable = false
+            setTextIsSelectable(false)
+            setOnClickListener { }
+            setOnTouchListener { _, _ -> true }
+        }
+        syncAmountViewMetrics(binding.editAmount)
     }
 
     private fun setupAmountPreview() {
@@ -262,6 +297,10 @@ class TransactionEditorActivity : AppCompatActivity() {
             binding.editAmount.setText(current.dropLast(1))
             binding.editAmount.setSelection(binding.editAmount.text?.length ?: 0)
         }
+    }
+
+    private fun syncAmountViewMetrics(editText: AppCompatEditText) {
+        editText.includeFontPadding = false
     }
 
     private fun currentType(): TransactionType {
@@ -353,7 +392,7 @@ class TransactionEditorActivity : AppCompatActivity() {
         }
 
         binding.cardSelectedCategory.setCardBackgroundColor(Color.parseColor(visual.colorHex))
-        binding.textSelectedCategoryIcon.text = visual.icon
+        binding.textSelectedCategoryIcon.setImageResource(visual.iconRes)
         binding.textSelectedCategoryTitle.text = when {
             selectedCategory != null -> getString(R.string.editor_selected_category, selectedCategory.name)
             type == TransactionType.TRANSFER -> getString(R.string.transaction_type_transfer)
@@ -378,11 +417,12 @@ class TransactionEditorActivity : AppCompatActivity() {
     }
 
     private fun updateDateDisplay() {
-        binding.buttonDate.text = "${selectedDate.year}\n${selectedDate.monthValue}月${selectedDate.dayOfMonth}号"
+        binding.buttonDate.text =
+            "${selectedDate.year}\n${selectedDate.monthValue}\u6708${selectedDate.dayOfMonth}\u53f7"
     }
 
     private fun updateNoteDisplay() {
-        binding.buttonNote.text = if (currentNote.isBlank()) "添加备注" else currentNote
+        binding.buttonNote.text = if (currentNote.isBlank()) "\u6dfb\u52a0\u5907\u6ce8" else currentNote
     }
 
     private fun saveTransaction() {
@@ -418,10 +458,10 @@ class TransactionEditorActivity : AppCompatActivity() {
             )
             repository.saveTransaction(input)
         }.onSuccess {
-            Toast.makeText(this, "已保存", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "\u5df2\u4fdd\u5b58", Toast.LENGTH_SHORT).show()
             finish()
         }.onFailure { error ->
-            Toast.makeText(this, error.message ?: "保存失败", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, error.message ?: "\u4fdd\u5b58\u5931\u8d25", Toast.LENGTH_SHORT).show()
         }
     }
 

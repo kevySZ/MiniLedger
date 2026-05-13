@@ -2,10 +2,11 @@ package com.kevy.ledger.ui.stats
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
+import com.kevy.ledger.R
 import com.kevy.ledger.domain.model.DailyStat
 import kotlin.math.max
 
@@ -13,14 +14,18 @@ class DailyTrendChartView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : View(context, attrs) {
-    private val expensePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.parseColor("#C44536") }
-    private val incomePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.parseColor("#2B9348") }
+    private val expensePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = ContextCompat.getColor(context, R.color.expense)
+    }
+    private val incomePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = ContextCompat.getColor(context, R.color.income)
+    }
     private val axisPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor("#D9E2EC")
+        color = ContextCompat.getColor(context, R.color.divider)
         strokeWidth = 2f
     }
     private val labelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor("#52606D")
+        color = ContextCompat.getColor(context, R.color.text_secondary)
         textSize = 24f
     }
     private var stats: List<DailyStat> = emptyList()

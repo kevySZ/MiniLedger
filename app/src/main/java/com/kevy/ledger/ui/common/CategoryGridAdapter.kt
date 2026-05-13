@@ -3,7 +3,9 @@ package com.kevy.ledger.ui.common
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.kevy.ledger.R
 import com.kevy.ledger.databinding.ItemCategoryOptionBinding
 import com.kevy.ledger.domain.model.Category
 
@@ -35,11 +37,15 @@ class CategoryGridAdapter(
         fun bind(item: Category, selected: Boolean) {
             val visual = CategoryVisuals.forCategory(item.name, item.type, item.colorHex)
             binding.cardIcon.setCardBackgroundColor(Color.parseColor(visual.colorHex))
-            binding.textIcon.text = visual.icon
+            binding.textIcon.setImageResource(visual.iconRes)
             binding.textName.text = item.name
-            binding.root.alpha = if (selected) 1f else 0.78f
-            binding.cardIcon.strokeWidth = if (selected) 4 else 0
-            binding.cardIcon.strokeColor = if (selected) Color.parseColor("#F2C14E") else Color.TRANSPARENT
+            binding.root.alpha = if (selected) 1f else 0.9f
+            binding.cardIcon.strokeWidth = if (selected) 3 else 0
+            binding.cardIcon.strokeColor = if (selected) {
+                ContextCompat.getColor(binding.root.context, R.color.brand_secondary)
+            } else {
+                Color.TRANSPARENT
+            }
             binding.root.setOnClickListener { onClick(item) }
         }
     }

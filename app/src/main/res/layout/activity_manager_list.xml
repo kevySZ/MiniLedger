@@ -14,8 +14,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:backgroundTint="@color/brand_primary"
-            android:titleTextColor="@color/white" />
+            android:backgroundTint="@color/surface_background"
+            app:navigationIconTint="@color/toolbar_icon"
+            android:titleTextColor="@color/text_primary" />
 
         <TextView
             android:id="@+id/textSubtitle"

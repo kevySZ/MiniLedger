@@ -90,7 +90,7 @@ class TransactionAdapter(
             val actionsVisible = expandedTransactionId == item.id
 
             binding.cardBadge.setCardBackgroundColor(tintColor)
-            binding.textBadge.text = visual.icon
+            binding.textBadge.setImageResource(visual.iconRes)
             binding.viewHeaderDot.backgroundTintList = ColorStateList.valueOf(tintColor)
             binding.textDate.text = formatDate(item.eventDate)
             binding.textDayExpense.text = context.getString(

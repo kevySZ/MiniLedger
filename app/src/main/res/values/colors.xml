@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="brand_primary">#1B6B5C</color>
-    <color name="brand_primary_dark">#124D42</color>
-    <color name="brand_secondary">#F2C14E</color>
-    <color name="surface_background">#F7F6F2</color>
-    <color name="surface_card">#FFFFFFFF</color>
-    <color name="text_primary">#1F2933</color>
-    <color name="text_secondary">#52606D</color>
-    <color name="income">#2B9348</color>
-    <color name="expense">#C44536</color>
-    <color name="divider">#D9E2EC</color>
-    <color name="text_muted">#7B8794</color>
-    <color name="surface_soft">#F2F4F7</color>
-    <color name="ring_track">#E6EAF0</color>
+    <color name="brand_primary">#8FC9B4</color>
+    <color name="brand_primary_dark">#78B59E</color>
+    <color name="brand_secondary">#F1D79A</color>
+    <color name="brand_tertiary">#BCD9F6</color>
+
+    <color name="surface_background">#FFF8F0</color>
+    <color name="surface_card">#FFFDF9</color>
+    <color name="surface_soft">#F9F0E5</color>
+    <color name="surface_soft_alt">#F4E7D8</color>
+    <color name="surface_accent">#F6FBF8</color>
+    <color name="surface_panel">#FFF4E8</color>
+    <color name="surface_keyboard">#F2E7DA</color>
+    <color name="surface_key">#FFFDF9</color>
+    <color name="surface_key_soft">#F7EEE2</color>
+    <color name="key_green">#93CBB7</color>
+    <color name="key_green_border">#87C2AD</color>
+    <color name="key_green_pressed">#5FA78E</color>
+    <color name="key_green_pressed_border">#4F907A</color>
+
+    <color name="text_primary">#594A43</color>
+    <color name="text_secondary">#857168</color>
+    <color name="text_muted">#B29E94</color>
+    <color name="text_inverse">#FFFFFFFF</color>
+    <color name="text_inverse_soft">#CCFFFFFF</color>
+
+    <color name="divider">#E9DDD0</color>
+    <color name="ring_track">#EFE5D8</color>
+    <color name="outline_soft">#E6D7C6</color>
+
+    <color name="income">#6FB8A1</color>
+    <color name="expense">#E2A07E</color>
+    <color name="warning">#F1C878</color>
+    <color name="danger">#D98574</color>
+
+    <color name="icon_on_color">#FFFFFFFF</color>
+    <color name="icon_tint_default">#857168</color>
+    <color name="toolbar_icon">#6C5C55</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

@@ -2,6 +2,7 @@ package com.kevy.ledger.ui.category
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
@@ -41,8 +42,8 @@ class CategoryManagerActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val bookName = repository.getCurrentBook()?.name ?: ""
-        binding.textSubtitle.text = "当前账本：$bookName"
+        val bookName = repository.getCurrentBook()?.name.orEmpty()
+        binding.textSubtitle.text = "\u5f53\u524d\u8d26\u672c\uff1a$bookName"
         loadCategories()
     }
 
@@ -51,11 +52,11 @@ class CategoryManagerActivity : AppCompatActivity() {
             ManagerRow(
                 id = it.id,
                 title = it.name,
-                subtitle = if (it.type == CategoryType.EXPENSE) "支出分类" else "收入分类",
-                meta = "${it.colorHex} ${if (it.isActive) "· 启用" else "· 停用"}"
+                subtitle = if (it.type == CategoryType.EXPENSE) "\u652f\u51fa\u5206\u7c7b" else "\u6536\u5165\u5206\u7c7b",
+                meta = "${it.colorHex} ${if (it.isActive) "\u00b7 \u542f\u7528" else "\u00b7 \u505c\u7528"}"
             )
         }
-        binding.textEmpty.visibility = if (rows.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
+        binding.textEmpty.visibility = if (rows.isEmpty()) View.VISIBLE else View.GONE
         adapter.submitList(rows)
     }
 
@@ -65,19 +66,32 @@ class CategoryManagerActivity : AppCompatActivity() {
             orientation = LinearLayout.VERTICAL
             setPadding(36)
         }
-        val nameEdit = EditText(this).apply { hint = "分类名称"; setText(existing?.name.orEmpty()) }
+        val nameEdit = EditText(this).apply {
+            hint = "\u5206\u7c7b\u540d\u79f0"
+            setText(existing?.name.orEmpty())
+        }
         val typeSpinner = Spinner(this).apply {
-            adapter = ArrayAdapter(this@CategoryManagerActivity, android.R.layout.simple_spinner_dropdown_item, listOf("支出", "收入"))
+            adapter = ArrayAdapter(
+                this@CategoryManagerActivity,
+                android.R.layout.simple_spinner_dropdown_item,
+                listOf("\u652f\u51fa", "\u6536\u5165")
+            )
             setSelection(if (existing?.type == CategoryType.INCOME) 1 else 0)
         }
-        val colorEdit = EditText(this).apply { hint = "颜色值"; setText(existing?.colorHex ?: "#C44536") }
-        val activeCheck = CheckBox(this).apply { text = "启用分类"; isChecked = existing?.isActive ?: true }
+        val colorEdit = EditText(this).apply {
+            hint = "\u989c\u8272\u503c"
+            setText(existing?.colorHex ?: "#E2A07E")
+        }
+        val activeCheck = CheckBox(this).apply {
+            text = "\u542f\u7528\u5206\u7c7b"
+            isChecked = existing?.isActive ?: true
+        }
         layout.addView(nameEdit)
         layout.addView(typeSpinner)
         layout.addView(colorEdit)
         layout.addView(activeCheck)
         AlertDialog.Builder(this)
-            .setTitle(if (existing == null) "新增分类" else "编辑分类")
+            .setTitle(if (existing == null) "\u65b0\u589e\u5206\u7c7b" else "\u7f16\u8f91\u5206\u7c7b")
             .setView(layout)
             .setPositiveButton(R.string.action_save) { _, _ ->
                 runCatching {
@@ -87,7 +101,7 @@ class CategoryManagerActivity : AppCompatActivity() {
                             bookId = bookId,
                             name = nameEdit.text.toString().trim(),
                             type = if (typeSpinner.selectedItemPosition == 1) CategoryType.INCOME else CategoryType.EXPENSE,
-                            colorHex = colorEdit.text.toString().trim().ifBlank { "#C44536" },
+                            colorHex = colorEdit.text.toString().trim().ifBlank { "#E2A07E" },
                             isActive = activeCheck.isChecked
                         )
                     )

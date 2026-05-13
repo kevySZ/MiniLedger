@@ -5,35 +5,36 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp">
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardIcon"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
-        app:cardCornerRadius="23dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        app:cardCornerRadius="21dp"
         app:cardElevation="0dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/textIcon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:contentDescription="@null"
+            android:padding="5dp"
+            android:scaleX="1.3"
+            android:scaleY="1.3"
+            android:scaleType="fitCenter" />
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="3dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
         android:textColor="@color/text_primary"
-        android:textSize="12sp" />
+        android:textSize="11sp" />
 
 </LinearLayout>

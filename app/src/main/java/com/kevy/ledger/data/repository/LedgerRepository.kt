@@ -21,7 +21,6 @@ import com.kevy.ledger.domain.model.TransactionType
 import com.kevy.ledger.util.DateUtils
 import org.json.JSONArray
 import org.json.JSONObject
-import java.time.LocalDate
 import java.time.YearMonth
 
 class LedgerRepository(
@@ -33,10 +32,12 @@ class LedgerRepository(
         db.beginTransaction()
         try {
             if (queryLong(db, "SELECT COUNT(*) FROM books", emptyArray()) == 0L) {
-                val bookId = insertBook(db, "默认账本", "#1B6B5C", "日常生活账本", true)
+                val bookId = insertBook(db, "默认账本", DEFAULT_BOOK_COLOR, "日常生活账本", true)
                 insertAccount(db, bookId, "现金", "现金", 0L, "", true)
                 seedDefaultCategories(db, bookId)
                 setMeta(db, KEY_SELECTED_BOOK_ID, bookId.toString())
+            } else {
+                getBooks(includeArchived = true).forEach { ensureDefaultCategories(db, it.id) }
             }
             db.setTransactionSuccessful()
         } finally {
@@ -213,7 +214,7 @@ class LedgerRepository(
             conditions += "is_active = 1"
         }
         val cursor = db.rawQuery(
-            "SELECT * FROM categories WHERE ${conditions.joinToString(" AND ")} ORDER BY type ASC, name ASC",
+            "SELECT * FROM categories WHERE ${conditions.joinToString(" AND ")} ORDER BY type ASC, id ASC",
             args.toTypedArray()
         )
         return cursor.useRows { rows ->
@@ -419,7 +420,12 @@ class LedgerRepository(
             )
         }.sortedBy { it.dayOfMonth }
 
-        return StatsSnapshot(summary = summary, expenseStats = expenseStats, incomeStats = incomeStats, dailyStats = dailyStats)
+        return StatsSnapshot(
+            summary = summary,
+            expenseStats = expenseStats,
+            incomeStats = incomeStats,
+            dailyStats = dailyStats
+        )
     }
 
     fun exportBackupJson(): String {
@@ -626,10 +632,61 @@ class LedgerRepository(
     }
 
     private fun seedDefaultCategories(db: SQLiteDatabase, bookId: Long) {
-        val expenseCategories = listOf("餐饮", "交通", "购物", "住房", "医疗", "娱乐", "通讯", "人情", "旅行", "其他")
-        val incomeCategories = listOf("工资", "奖金", "兼职", "理财", "退款", "其他")
-        expenseCategories.forEach { insertCategory(db, bookId, it, CategoryType.EXPENSE, "#C44536") }
-        incomeCategories.forEach { insertCategory(db, bookId, it, CategoryType.INCOME, "#2B9348") }
+        DEFAULT_EXPENSE_CATEGORIES.forEach { insertCategory(db, bookId, it.name, CategoryType.EXPENSE, it.colorHex) }
+        DEFAULT_INCOME_CATEGORIES.forEach { insertCategory(db, bookId, it.name, CategoryType.INCOME, it.colorHex) }
+    }
+
+    private fun ensureDefaultCategories(db: SQLiteDatabase, bookId: Long) {
+        renameCategoryIfNeeded(db, bookId, CategoryType.EXPENSE, "人情", "礼物")
+        renameCategoryIfNeeded(db, bookId, CategoryType.EXPENSE, "用餐", "餐饮")
+        renameCategoryIfNeeded(db, bookId, CategoryType.INCOME, "退税", "退款")
+
+        val existing = mutableSetOf<String>()
+        val cursor = db.rawQuery("SELECT name, type FROM categories WHERE book_id = ?", arrayOf(bookId.toString()))
+        cursor.use {
+            while (it.moveToNext()) {
+                existing += "${it.getString(0)}|${it.getString(1)}"
+            }
+        }
+
+        DEFAULT_EXPENSE_CATEGORIES.forEach { spec ->
+            val key = "${spec.name}|${CategoryType.EXPENSE.name}"
+            if (key !in existing) {
+                insertCategory(db, bookId, spec.name, CategoryType.EXPENSE, spec.colorHex)
+            }
+        }
+        DEFAULT_INCOME_CATEGORIES.forEach { spec ->
+            val key = "${spec.name}|${CategoryType.INCOME.name}"
+            if (key !in existing) {
+                insertCategory(db, bookId, spec.name, CategoryType.INCOME, spec.colorHex)
+            }
+        }
+    }
+
+    private fun renameCategoryIfNeeded(
+        db: SQLiteDatabase,
+        bookId: Long,
+        type: CategoryType,
+        oldName: String,
+        newName: String
+    ) {
+        val targetExists = queryLong(
+            db,
+            "SELECT COUNT(*) FROM categories WHERE book_id = ? AND type = ? AND name = ?",
+            arrayOf(bookId.toString(), type.name, newName)
+        ) > 0L
+        if (targetExists) return
+
+        val values = ContentValues().apply {
+            put("name", newName)
+            put("updated_at", nowString())
+        }
+        db.update(
+            "categories",
+            values,
+            "book_id = ? AND type = ? AND name = ?",
+            arrayOf(bookId.toString(), type.name, oldName)
+        )
     }
 
     private fun insertCategory(
@@ -661,16 +718,12 @@ class LedgerRepository(
 
     private fun queryLong(db: SQLiteDatabase, sql: String, args: Array<String>): Long {
         val cursor = db.rawQuery(sql, args)
-        return cursor.use {
-            if (it.moveToFirst()) it.getLong(0) else 0L
-        }
+        return cursor.use { if (it.moveToFirst()) it.getLong(0) else 0L }
     }
 
     private fun queryString(db: SQLiteDatabase, sql: String, args: Array<String>): String? {
         val cursor = db.rawQuery(sql, args)
-        return cursor.use {
-            if (it.moveToFirst()) it.getString(0) else null
-        }
+        return cursor.use { if (it.moveToFirst()) it.getString(0) else null }
     }
 
     private fun <T> Cursor.useRows(mapper: (List<Row>) -> T): T {
@@ -726,5 +779,35 @@ class LedgerRepository(
 
     companion object {
         private const val KEY_SELECTED_BOOK_ID = "selected_book_id"
+        private const val DEFAULT_BOOK_COLOR = "#8FC9B4"
+
+        private data class DefaultCategorySpec(
+            val name: String,
+            val colorHex: String
+        )
+
+        private val DEFAULT_EXPENSE_CATEGORIES = listOf(
+            DefaultCategorySpec("餐饮", "#8FC9B4"),
+            DefaultCategorySpec("交通", "#A8C8E8"),
+            DefaultCategorySpec("购物", "#F1BA95"),
+            DefaultCategorySpec("住房", "#E8D097"),
+            DefaultCategorySpec("医疗", "#E5AAA4"),
+            DefaultCategorySpec("娱乐", "#CDBBE8"),
+            DefaultCategorySpec("通讯", "#A4B8E3"),
+            DefaultCategorySpec("学习", "#A7D6C6"),
+            DefaultCategorySpec("旅行", "#93D3D0"),
+            DefaultCategorySpec("礼物", "#E6AFC0"),
+            DefaultCategorySpec("宠物", "#F0CD9B"),
+            DefaultCategorySpec("其他", "#C9BDB3")
+        )
+
+        private val DEFAULT_INCOME_CATEGORIES = listOf(
+            DefaultCategorySpec("工资", "#7EBEA7"),
+            DefaultCategorySpec("奖金", "#EFC17E"),
+            DefaultCategorySpec("兼职", "#B2C8E8"),
+            DefaultCategorySpec("理财", "#8FB5D8"),
+            DefaultCategorySpec("退款", "#A9D5B3"),
+            DefaultCategorySpec("其他", "#C9BDB3")
+        )
     }
 }
