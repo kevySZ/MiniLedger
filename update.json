@@ -1,0 +1,15 @@
+{
+  "versionCode": 3,
+  "versionName": "1.0.2",
+  "title": "版本更新",
+  "changelog": [
+    "版本1.0.3",
+    "更新内容：换肤，检测升级3"
+  ],
+  "apkUrl": "https://github.com/kevySZ/MiniLedger/releases/download/v1.0.3/app-release.apk",
+  "apkMirrors": [
+    "https://mirror.ghproxy.com/https://github.com/kevySZ/MiniLedger/releases/download/v1.0.3/app-release.apk"
+  ],
+  "sha256": "f7e666a7b280a8e40bd5c8b5cd168e670d99b9e5c2d7d664e1df987853b42e45",
+  "force": false
+}

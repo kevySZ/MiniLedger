@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="update_manifest_urls">
+        <item>https://mirror.ghproxy.com/https://raw.githubusercontent.com/kevySZ/MiniLedger/main/update.json</item>
+        <item>https://raw.githubusercontent.com/kevySZ/MiniLedger/main/update.json</item>
+        <item>https://cdn.jsdelivr.net/gh/kevySZ/MiniLedger@main/update.json</item>
+    </string-array>
+</resources>

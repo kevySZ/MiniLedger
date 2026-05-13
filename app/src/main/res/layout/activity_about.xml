@@ -103,6 +103,25 @@
                 android:text="@string/about_check_update"
                 app:backgroundTint="?attr/ledgerBrandPrimary"
                 app:cornerRadius="18dp" />
+
+            <TextView
+                android:id="@+id/textUpdateStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:textColor="?attr/ledgerTextSecondary"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                app:indicatorColor="?attr/ledgerBrandPrimary"
+                app:trackColor="?attr/ledgerSurfaceSoftAlt" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
